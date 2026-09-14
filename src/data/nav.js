@@ -1,5 +1,6 @@
 export const navLinks = [
   { label: "Services & Pricing", to: "/services" },
+  { label: "Accessories", to: "/accessories" },
   { label: "Get a Quote", to: "/quote" },
   { label: "Gallery", to: "/gallery" },
   { label: "About", to: "/about" },
@@ -10,6 +11,7 @@ export const navLinks = [
 
 export const footerExploreLinks = [
   { label: "Services & Pricing", to: "/services" },
+  { label: "Accessories", to: "/accessories" },
   { label: "Get an Instant Quote", to: "/quote" },
   { label: "Before / After Gallery", to: "/gallery" },
   { label: "About the Studio", to: "/about" },
