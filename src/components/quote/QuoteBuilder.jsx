@@ -1,6 +1,6 @@
-import { useMemo, useState } from "react";
-import { Check, MessageCircle, RotateCcw } from "lucide-react";
-import { services, addOns, vehicleSizes, formatPKR } from "../../data/services";
+﻿import { useMemo, useState } from "react";
+import { Check, MessageCircle, RotateCcw, ArrowUpRight } from "lucide-react";
+import { services, vehicleSizes, formatPKR } from "../../data/services";
 import { waLink } from "../../data/business";
 import Reveal from "../ui/Reveal";
 import Button from "../ui/Button";
@@ -8,10 +8,15 @@ import Button from "../ui/Button";
 const DEFAULT_SIZE = "sedan";
 const DEFAULT_SERVICES = ["signature"];
 
+// PPF has no fixed price (it depends on film quality), so it can't join the
+// running total — it's excluded from selection but still shown below the
+// list as a non-selectable row that jumps straight to a WhatsApp quote.
+const quotableServices = services.filter((s) => !s.quoteOnly);
+const quoteOnlyServices = services.filter((s) => s.quoteOnly);
+
 export default function QuoteBuilder() {
   const [size, setSize] = useState(DEFAULT_SIZE);
   const [selectedServices, setSelectedServices] = useState(DEFAULT_SERVICES);
-  const [selectedAddOns, setSelectedAddOns] = useState([]);
 
   const toggleService = (slug) => {
     setSelectedServices((prev) =>
@@ -19,52 +24,34 @@ export default function QuoteBuilder() {
     );
   };
 
-  const toggleAddOn = (id) => {
-    setSelectedAddOns((prev) =>
-      prev.includes(id) ? prev.filter((a) => a !== id) : [...prev, id]
-    );
-  };
-
   const reset = () => {
     setSize(DEFAULT_SIZE);
     setSelectedServices(DEFAULT_SERVICES);
-    setSelectedAddOns([]);
   };
 
   const lineItems = useMemo(() => {
-    const serviceLines = services
+    return quotableServices
       .filter((s) => selectedServices.includes(s.slug))
       .map((s) => ({
         id: s.slug,
         name: s.shortName,
         price: s.pricing[size],
       }));
-    const addOnLines = addOns
-      .filter((a) => selectedAddOns.includes(a.id))
-      .map((a) => ({ id: a.id, name: a.name, price: a.price }));
-    return [...serviceLines, ...addOnLines];
-  }, [selectedServices, selectedAddOns, size]);
+  }, [selectedServices, size]);
 
   const total = lineItems.reduce((sum, item) => sum + item.price, 0);
   const sizeLabel = vehicleSizes.find((v) => v.id === size)?.label ?? "";
 
   const waMessage = useMemo(() => {
-    const serviceNames = services
+    const serviceNames = quotableServices
       .filter((s) => selectedServices.includes(s.slug))
       .map((s) => s.shortName)
       .join(", ");
-    const addOnNames = addOns
-      .filter((a) => selectedAddOns.includes(a.id))
-      .map((a) => a.name)
-      .join(", ");
 
-    let msg = `Assalam-o-Alaikum Casa De Cars! I would like to book:\nVehicle size: ${sizeLabel}\nServices: ${
+    return `Assalam-o-Alaikum Casa De Cars! I would like to book:\nVehicle size: ${sizeLabel}\nServices: ${
       serviceNames || "Not selected yet"
-    }`;
-    if (addOnNames) msg += `\nAdd-ons: ${addOnNames}`;
-    msg += `\nWebsite estimate: ${formatPKR(total)}\nPlease confirm my slot. Thank you!`;
-    return msg;
-  }, [selectedServices, selectedAddOns, sizeLabel, total]);
+    }\nWebsite estimate: ${formatPKR(total)}\nPlease confirm my slot. Thank you!`;
+  }, [selectedServices, sizeLabel, total]);
 
   return (
     <div className="grid lg:grid-cols-[1fr_380px] gap-12 items-start">
@@ -72,7 +59,7 @@ export default function QuoteBuilder() {
         {/* Step 01 — Vehicle size */}
         <Reveal>
           <StepLabel number="01" title="Your vehicle size" />
-          <div className="grid sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {vehicleSizes.map((v) => (
               <button
                 key={v.id}
@@ -98,7 +85,7 @@ export default function QuoteBuilder() {
         <Reveal delay={0.05}>
           <StepLabel number="02" title="Choose your services" />
           <div className="space-y-3">
-            {services.map((s) => {
+            {quotableServices.map((s) => {
               const active = selectedServices.includes(s.slug);
               return (
                 <button
@@ -138,50 +125,46 @@ export default function QuoteBuilder() {
                   </span>
                   <span className="shrink-0 text-sm font-semibold text-cream/90 whitespace-nowrap">
                     {formatPKR(s.pricing[size])}
-                    <span className="text-muted"> / {size}</span>
+                    <span className="text-muted"> / {sizeLabel}</span>
                   </span>
                 </button>
               );
             })}
-          </div>
-        </Reveal>
 
-        {/* Step 03 — Add-ons */}
-        <Reveal delay={0.1}>
-          <StepLabel number="03" title="Add the finishing touches" />
-          <div className="grid sm:grid-cols-2 gap-3">
-            {addOns.map((a) => {
-              const active = selectedAddOns.includes(a.id);
-              return (
-                <button
-                  key={a.id}
-                  type="button"
-                  onClick={() => toggleAddOn(a.id)}
-                  aria-pressed={active}
-                  className={`flex items-center justify-between gap-3 rounded-xl border px-5 py-4 transition-colors duration-200 ${
-                    active
-                      ? "border-amber bg-amber/10"
-                      : "border-line bg-panel hover:border-cream/30"
-                  }`}
-                >
-                  <span className="flex items-center gap-3 text-sm">
-                    <span
-                      className={`shrink-0 w-5 h-5 rounded-md border flex items-center justify-center ${
-                        active
-                          ? "bg-amber border-amber text-onAmber"
-                          : "border-cream/30 text-transparent"
-                      }`}
-                    >
-                      <Check className="w-3.5 h-3.5" strokeWidth={3} />
+            {/* Quote-only services (e.g. PPF) — shown but not selectable,
+                since they have no fixed price to add to the running total. */}
+            {quoteOnlyServices.map((s) => (
+              <a
+                key={s.slug}
+                href={waLink(
+                  `Assalam-o-Alaikum! I'd like a quote for ${s.name} — could you share film options and pricing?`
+                )}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full text-left rounded-xl border border-dashed border-line px-5 py-4 flex items-start gap-4 opacity-70 hover:opacity-100 hover:border-amber/50 transition-all duration-200"
+              >
+                <span className="mt-0.5 shrink-0 w-5 h-5 rounded-md border border-cream/20 flex items-center justify-center text-muted text-[10px] font-bold">
+                  ×
+                </span>
+                <span className="flex-1">
+                  <span className="flex flex-wrap items-center gap-2">
+                    <span className="font-display uppercase text-base tracking-wide">
+                      {s.shortName}
                     </span>
-                    {a.name}
+                    <span className="rounded-full bg-panel border border-line text-muted px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.08em]">
+                      Quoted separately
+                    </span>
                   </span>
-                  <span className="text-amber font-semibold whitespace-nowrap">
-                    + {formatPKR(a.price)}
+                  <span className="block text-sm text-muted mt-1 leading-relaxed">
+                    {s.note}
                   </span>
-                </button>
-              );
-            })}
+                </span>
+                <span className="shrink-0 flex items-center gap-1 text-sm font-semibold text-amber whitespace-nowrap">
+                  Ask on WhatsApp
+                  <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={2.5} />
+                </span>
+              </a>
+            ))}
           </div>
         </Reveal>
       </div>

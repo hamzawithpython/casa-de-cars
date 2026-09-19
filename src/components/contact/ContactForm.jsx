@@ -1,13 +1,17 @@
-import { useState } from "react";
-import { Send, CheckCircle2 } from "lucide-react";
+﻿import { useState } from "react";
+import { MessageCircle } from "lucide-react";
 import { services } from "../../data/services";
-import Reveal from "../ui/Reveal";
+import { waLink } from "../../data/business";
 
 const TIME_SLOTS = [
-  "Morning (10 AM – 1 PM)",
-  "Afternoon (1 PM – 4 PM)",
-  "Evening (4 PM – 8 PM)",
+  "Morning (11 AM \u2013 2 PM)",
+  "Afternoon (2 PM \u2013 5 PM)",
+  "Evening (5 PM \u2013 9 PM)",
 ];
+
+// Blocks past dates in the date picker -- recalculated on each render so it
+// never goes stale if the form stays open across midnight.
+const todayISO = new Date().toISOString().split("T")[0];
 
 const initialState = {
   name: "",
@@ -19,46 +23,32 @@ const initialState = {
   notes: "",
 };
 
+function buildWaMessage(form) {
+  const lines = [
+    "Assalam-o-Alaikum Casa De Cars! I'd like to book an appointment.",
+    `Name: ${form.name}`,
+    `Phone: ${form.phone}`,
+  ];
+  if (form.vehicle) lines.push(`Vehicle: ${form.vehicle}`);
+  if (form.service) lines.push(`Service: ${form.service}`);
+  if (form.date) lines.push(`Preferred date: ${form.date}`);
+  if (form.time) lines.push(`Preferred time: ${form.time}`);
+  if (form.notes) lines.push(`Notes: ${form.notes}`);
+  lines.push("Please confirm my slot. Thank you!");
+  return lines.join("\n");
+}
+
 export default function ContactForm() {
   const [form, setForm] = useState(initialState);
-  const [status, setStatus] = useState("idle"); // idle | submitting | success
 
   const update = (field) => (e) =>
     setForm((prev) => ({ ...prev, [field]: e.target.value }));
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setStatus("submitting");
-
-    // TODO: replace this mock delay with a real request to your backend,
-    // e.g. `await fetch("/api/appointments", { method: "POST", body: ... })`
-    await new Promise((resolve) => setTimeout(resolve, 700));
-
-    setStatus("success");
+    const message = buildWaMessage(form);
+    window.open(waLink(message), "_blank", "noopener,noreferrer");
   };
-
-  if (status === "success") {
-    return (
-      <Reveal className="rounded-2xl border border-line bg-panel p-10 text-center">
-        <CheckCircle2 className="w-12 h-12 text-amber mx-auto mb-4" strokeWidth={1.5} />
-        <h3 className="text-xl tracking-wide mb-2">Request received</h3>
-        <p className="text-muted max-w-sm mx-auto leading-relaxed">
-          Thanks, {form.name || "there"}. We confirm every slot personally —
-          usually within the hour during working time.
-        </p>
-        <button
-          type="button"
-          onClick={() => {
-            setForm(initialState);
-            setStatus("idle");
-          }}
-          className="mt-6 text-sm text-amber hover:text-amber-light transition-colors"
-        >
-          Submit another request
-        </button>
-      </Reveal>
-    );
-  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
@@ -103,7 +93,7 @@ export default function ContactForm() {
               {s.name}
             </option>
           ))}
-          <option value="not-sure">Not sure — advise me</option>
+          <option value="Not sure">Not sure {"\u2014"} advise me</option>
         </select>
       </Field>
 
@@ -113,6 +103,8 @@ export default function ContactForm() {
             type="date"
             value={form.date}
             onChange={update("date")}
+            min={todayISO}
+            style={{ colorScheme: "dark" }}
             className="input"
           />
         </Field>
@@ -140,16 +132,14 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        disabled={status === "submitting"}
-        className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-amber text-onAmber px-6 py-3.5 text-sm font-semibold hover:bg-amber-light transition-colors disabled:opacity-60"
+        className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-amber text-onAmber px-6 py-3.5 text-sm font-semibold hover:bg-amber-light transition-colors"
       >
-        {status === "submitting" ? "Sending…" : "Request my appointment"}
-        {status !== "submitting" && <Send className="w-4 h-4" strokeWidth={2.25} />}
+        Send via WhatsApp
+        <MessageCircle className="w-4 h-4" strokeWidth={2.25} />
       </button>
 
       <p className="text-xs text-muted text-center">
-        We confirm every slot personally — usually within the hour during
-        working time.
+        This opens WhatsApp with your details already filled in {"\u2014"} just hit send.
       </p>
     </form>
   );

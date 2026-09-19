@@ -1,8 +1,8 @@
-export const faqItems = [
+﻿export const faqItems = [
   {
     question: "How much does a complete detailing cost?",
     answer:
-      "It depends on your vehicle size. Signature Complete Detailing starts at Rs 14,999 for hatchbacks, Rs 17,999 for sedans and Rs 21,999 for SUVs and crossovers. Use our instant quote builder for an exact estimate in under a minute — no DM needed.",
+      "It depends on your vehicle size. Signature Complete Detailing starts at Rs 12,000 for hatchbacks, Rs 15,000 for sedans, Rs 18,000 for crossovers and Rs 22,000 for SUVs. Use our instant quote builder for an exact estimate in under a minute -- no DM needed.",
   },
   {
     question: "How do I book an appointment?",
@@ -12,12 +12,12 @@ export const faqItems = [
   {
     question: "How long does a full detail take?",
     answer:
-      "Our Signature Complete Detailing takes a full day — around 6 to 8 hours. Compound & polish runs 3–4 hours, interior deep cleans 2–3 hours, and an Auto Spa wash about an hour. We confirm your exact pickup time when you book.",
+      "Our Signature Complete Detailing takes a full day -- around 11 to 16 hours. Compound & polish runs 3-4 hours, interior deep cleans 2-3 hours, and our premium exterior detail takes about 2-3 hours. We confirm your exact pickup time when you book.",
   },
   {
     question: "What products do you use?",
     answer:
-      "We detail with premium German products — pH-neutral shampoos, professional compounds, polishes and waxes chosen to be safe on modern clear coats and interiors.",
+      "We detail with premium German products -- pH-neutral shampoos, professional compounds, polishes and waxes chosen to be safe on modern clear coats and interiors.",
   },
   {
     question: "Where are you located?",
@@ -27,16 +27,16 @@ export const faqItems = [
   {
     question: "Do you offer PPF (paint protection film)?",
     answer:
-      "Yes. Front-end PPF packages start from Rs 24,999 covering the bumper, bonnet, fenders and mirrors. Full-body coverage is quoted after a quick inspection of the vehicle.",
+      "Yes. PPF pricing depends on the film quality, so we don't list a fixed price -- message us on WhatsApp with your vehicle and we'll quote you directly. Front-end coverage (bumper, bonnet, fenders and mirrors) or full-body wraps are both available.",
   },
   {
     question: "Can you remove paint overspray or stubborn spots?",
     answer:
-      "Yes — overspray and contamination removal is one of our specialties. We safely clay and polish the affected panels, restoring a smooth, clean surface without harming your paint. Treatment starts from Rs 4,999.",
+      "Yes -- overspray and contamination removal is one of our specialties. We safely clay and polish the affected panels, restoring a smooth, clean surface without harming your paint. Treatment starts from Rs 3,000.",
   },
   {
     question: "Do you take walk-ins?",
     answer:
-      "We recommend booking ahead so a bay is reserved for you, but message us on WhatsApp and we will always try to fit in a same-day Auto Spa wash when the schedule allows.",
+      "We recommend booking ahead so a bay is reserved for you, but message us on WhatsApp and we will always try to fit in a same-day exterior detail or wash when the schedule allows.",
   },
 ];

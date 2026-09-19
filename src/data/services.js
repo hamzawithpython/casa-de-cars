@@ -1,57 +1,54 @@
-import { images } from "./images";
+﻿import { images } from "./images";
 
-/**
- * Vehicle size classes used across pricing & the quote builder.
- * `examples` are shown as helper text under each size option.
- */
 export const vehicleSizes = [
   {
     id: "hatchback",
     label: "Hatchback",
-    examples: "Alto · Vitz · Wagon R · Mira",
+    examples: "Alto \u00b7 Vitz \u00b7 Wagon R \u00b7 Mira",
   },
   {
     id: "sedan",
     label: "Sedan",
-    examples: "Corolla · Civic · City · Sonata",
+    examples: "Corolla \u00b7 Civic \u00b7 City \u00b7 Sonata",
   },
   {
     id: "suv",
-    label: "SUV / Crossover",
-    examples: "Sportage · C-HR · Mini Cooper",
+    label: "SUV",
+    examples: "Land Cruiser \u00b7 Prado \u00b7 Haval Tank \u00b7 BYD Shark",
+  },
+  {
+    id: "crossover",
+    label: "Crossover",
+    examples: "Honda Vezel \u00b7 KIA Sportage \u00b7 MG HS \u00b7 Toyota C-HR",
   },
 ];
 
-/**
- * Every service offered, with per-vehicle-size pricing (in PKR).
- * `slug` doubles as the in-page anchor on /services (e.g. #signature).
- */
 export const services = [
   {
     slug: "signature",
     name: "Signature Complete Detailing",
     shortName: "Complete Detailing",
     mostBooked: true,
-    duration: "Full day (6–8 hours)",
+    duration: "Full day (11\u201316 hours)",
     description:
-      "Our flagship transformation. Interior, exterior, engine bay and trunk — every surface deep-cleaned, polished and protected with premium German products. From dull to showroom shine.",
+      "Our flagship transformation. Interior, exterior, engine bay and trunk \u2014 every surface deep-cleaned, polished and protected with premium German products. From dull to showroom shine.",
     image: images.audiA3,
     features: [
       "Full exterior hand wash & decontamination",
       "Machine compound & polish for a flawless finish",
-      "Complete interior detailing — seats, carpets, roof lining & dashboard",
+      "Complete interior detailing \u2014 seats, carpets, roof lining & dashboard",
       "Engine bay & trunk detailing",
       "Premium German wax protection",
       "Glass, wheels, tyres & trim dressing",
     ],
-    pricing: { hatchback: 14999, sedan: 17999, suv: 21999 },
+    pricing: { hatchback: 12000, sedan: 15000, suv: 22000, crossover: 18000 },
   },
   {
     slug: "compound",
     name: "Compound & Polish",
     shortName: "Compound & Polish",
     mostBooked: true,
-    duration: "3–4 hours",
+    duration: "3\u20134 hours",
     description:
       "Swirl marks, light scratches and oxidation removed by machine. Restoring the shine, enhancing the finish, and bringing the paint back to life.",
     image: images.whiteCarGlossyHood,
@@ -61,14 +58,14 @@ export const services = [
       "Refining polish for deep gloss",
       "Protective wax top coat",
     ],
-    pricing: { hatchback: 7999, sedan: 9999, suv: 12999 },
+    pricing: { hatchback: 5000, sedan: 7500, suv: 12000, crossover: 10000 },
   },
   {
     slug: "interior",
     name: "Interior Deep Clean",
     shortName: "Interior Deep Clean",
     mostBooked: true,
-    duration: "2–3 hours",
+    duration: "2\u20133 hours",
     description:
       "A cabin reset. Seats, carpets, headliner, vents and every crevice cleaned and conditioned so the inside feels factory-fresh.",
     image: images.kiaSportageInterior,
@@ -78,47 +75,30 @@ export const services = [
       "Dashboard, console & vent detailing",
       "Interior glass & odor neutralising",
     ],
-    pricing: { hatchback: 6999, sedan: 7999, suv: 9999 },
+    pricing: { hatchback: 5000, sedan: 6000, suv: 8000, crossover: 7500 },
   },
   {
     slug: "engine",
     name: "Engine Bay Wash",
     shortName: "Engine Bay Wash",
     mostBooked: false,
-    duration: "45–60 minutes",
+    duration: "45\u201360 minutes",
     description:
-      "From dusty to fresh. A quick yet professional engine bay wash — a clean engine bay not only looks better, it makes maintenance easier.",
+      "From dusty to fresh. A quick yet professional engine bay wash \u2014 a clean engine bay not only looks better, it makes maintenance easier.",
     image: images.nissanNoteEngine,
     features: [
       "Safe covering of sensitive components",
       "Degrease & gentle pressure rinse",
       "Dressing of plastics and rubbers",
     ],
-    pricing: { hatchback: 2499, sedan: 2999, suv: 3499 },
-  },
-  {
-    slug: "spa",
-    name: "Auto Spa Wash",
-    shortName: "Auto Spa Wash",
-    mostBooked: false,
-    duration: "60–90 minutes",
-    description:
-      "The premium maintenance wash between details. Gentle two-bucket hand wash with pH-neutral German shampoo for a spotless, streak-free finish.",
-    image: images.whiteHyundaiSedan,
-    features: [
-      "Foam pre-soak & two-bucket hand wash",
-      "Wheels, arches & tyres cleaned and dressed",
-      "Streak-free glass, inside and out",
-      "Quick interior wipe-down & vacuum",
-    ],
-    pricing: { hatchback: 1499, sedan: 1999, suv: 2499 },
+    pricing: { hatchback: 2500, sedan: 3500, suv: 5000, crossover: 5000 },
   },
   {
     slug: "overspray",
     name: "Overspray & Spot Removal",
     shortName: "Overspray Removal",
     mostBooked: false,
-    duration: "2–4 hours",
+    duration: "2\u20134 hours",
     description:
       "Those tiny spray spots might look harmless, but they ruin the finish. We safely remove every paint overspray mark and restore a smooth, clean surface.",
     image: images.kiaSportageStudio,
@@ -128,16 +108,33 @@ export const services = [
       "Panel polish to restore smoothness",
       "Protective sealant on treated panels",
     ],
-    pricing: { hatchback: 4999, sedan: 5999, suv: 7999 },
+    pricing: { hatchback: 3000, sedan: 6000, suv: 8000, crossover: 5000 },
+  },
+  {
+    slug: "exterior",
+    name: "Premium Exterior Detail",
+    shortName: "Exterior Detail",
+    mostBooked: false,
+    duration: "2\u20133 hours",
+    description:
+      "A premium exterior-only detail using German products \u2014 for when the outside needs to shine but the interior doesn't need a full reset.",
+    image: images.whiteHyundaiSedan,
+    features: [
+      "Hand wash & decontamination with German pH-neutral shampoo",
+      "Wheel & tyre deep clean and dressing",
+      "Exterior trim & rubber restoration",
+      "German wax / sealant protective top coat",
+    ],
+    pricing: { hatchback: 5000, sedan: 6500, suv: 8000, crossover: 7500 },
   },
   {
     slug: "ppf",
     name: "Paint Protection Film",
     shortName: "PPF",
     mostBooked: false,
-    duration: "1–3 days",
+    duration: "1\u20133 days",
     description:
-      "Invisible armour for your paint. Self-healing PPF applied by trained hands — from high-impact front-end coverage to full-body wraps.",
+      "Invisible armour for your paint. Self-healing PPF applied by trained hands \u2014 from high-impact front-end coverage to full-body wraps.",
     image: images.kiaSportageShowroom,
     features: [
       "Front-end package: bumper, bonnet, fenders & mirrors",
@@ -145,8 +142,9 @@ export const services = [
       "Self-healing, stain-resistant film",
       "Surface preparation & panel wipe included",
     ],
-    pricing: { hatchback: 24999, sedan: 29999, suv: 39999 },
-    note: "Front-end package · full body quoted on inspection",
+    quoteOnly: true,
+    pricing: null,
+    note: "Pricing depends on film quality \u2014 get an exact quote on WhatsApp",
   },
 ];
 

@@ -1,4 +1,4 @@
-import { ArrowRight, MessageCircle, ChevronDown } from "lucide-react";
+﻿import { ArrowRight, MessageCircle, ChevronDown } from "lucide-react";
 import { images } from "../../data/images";
 import { business, waLink } from "../../data/business";
 import { heroStats } from "../../data/homeContent";
@@ -20,7 +20,7 @@ export default function Hero() {
         <Reveal>
           <p className="flex items-center gap-3 text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-cream/70 mb-6">
             <span className="w-8 h-px bg-amber" />
-            {business.category} — {business.location}
+            {business.category}
           </p>
         </Reveal>
 

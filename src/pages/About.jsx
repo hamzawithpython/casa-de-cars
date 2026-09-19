@@ -1,4 +1,4 @@
-import { Sparkles, ShieldCheck, HeartHandshake, ArrowRight } from "lucide-react";
+﻿import { Sparkles, ShieldCheck, HeartHandshake, ArrowRight } from "lucide-react";
 import PageHero from "../components/layout/PageHero";
 import Reveal from "../components/ui/Reveal";
 import Button from "../components/ui/Button";
@@ -20,7 +20,7 @@ export default function About() {
     <>
       <PageHero
         eyebrow="About the studio"
-        title="Clean. Shine. Protect. Est. 2024"
+        title="Clean. Shine. Protect. Est. 2026"
       />
 
       <section className="pb-24 md:pb-32">
@@ -28,7 +28,7 @@ export default function About() {
           <Reveal>
             <p className="eyebrow mb-4">Our story</p>
             <h2 className="text-2xl md:text-3xl leading-snug mb-6 text-balance">
-              “From sleepless nights to building my own dream.”
+              "From sleepless nights to building my own dream."
             </h2>
             <div className="space-y-4">
               {storyParagraphs.map((p) => (

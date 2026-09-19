@@ -1,12 +1,13 @@
-import { Check, MessageCircle, ArrowRight } from "lucide-react";
-import { vehicleSizes } from "../../data/services";
-import { formatPKR } from "../../data/services";
+﻿import { Check, MessageCircle, ArrowRight } from "lucide-react";
+import { vehicleSizes, formatPKR } from "../../data/services";
 import { waLink } from "../../data/business";
 import Reveal from "../ui/Reveal";
 import Button from "../ui/Button";
 
 export default function ServiceCard({ service, reverse = false }) {
-  const waMsg = `Assalam-o-Alaikum! I would like to book: ${service.name}. Please share available slots.`;
+  const waMsg = service.quoteOnly
+    ? `Assalam-o-Alaikum! I'd like a quote for ${service.name} — could you share film options and pricing?`
+    : `Assalam-o-Alaikum! I would like to book: ${service.name}. Please share available slots.`;
 
   return (
     <Reveal
@@ -49,31 +50,39 @@ export default function ServiceCard({ service, reverse = false }) {
           ))}
         </ul>
 
-        <div className="grid grid-cols-3 gap-4 mb-4">
-          {vehicleSizes.map((size) => (
-            <div
-              key={size.id}
-              className="rounded-lg border border-line bg-panel px-4 py-3.5"
-            >
-              <p className="text-[11px] uppercase tracking-[0.08em] text-muted mb-1">
-                {size.label}
-              </p>
-              <p className="font-display text-lg">
-                {formatPKR(service.pricing[size.id])}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {service.note && (
-          <p className="text-xs text-muted mb-6">{service.note}</p>
+        {service.quoteOnly ? (
+          <div className="rounded-lg border border-amber/40 bg-amber/10 px-5 py-4 mb-6">
+            <p className="text-sm text-cream">{service.note}</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
+            {vehicleSizes.map((size) => (
+              <div
+                key={size.id}
+                className="rounded-lg border border-line bg-panel px-3.5 py-3.5"
+              >
+                <p className="text-[11px] uppercase tracking-[0.08em] text-muted mb-1">
+                  {size.label}
+                </p>
+                <p className="font-display text-base md:text-lg">
+                  {formatPKR(service.pricing[size.id])}
+                </p>
+              </div>
+            ))}
+          </div>
         )}
 
         <div className="flex flex-wrap gap-4 mt-6">
-          <Button to="/quote" icon={ArrowRight}>
-            Get a quote
-          </Button>
-          <Button variant="secondary" href={waLink(waMsg)} icon={MessageCircle}>
+          {!service.quoteOnly && (
+            <Button to="/quote" icon={ArrowRight}>
+              Get a quote
+            </Button>
+          )}
+          <Button
+            variant={service.quoteOnly ? "primary" : "secondary"}
+            href={waLink(waMsg)}
+            icon={MessageCircle}
+          >
             WhatsApp
           </Button>
         </div>

@@ -1,5 +1,6 @@
-export const navLinks = [
+﻿export const navLinks = [
   { label: "Services & Pricing", to: "/services" },
+  { label: "Accessories", to: "/accessories" },
   { label: "Get a Quote", to: "/quote" },
   { label: "Gallery", to: "/gallery" },
   { label: "About", to: "/about" },
@@ -10,6 +11,7 @@ export const navLinks = [
 
 export const footerExploreLinks = [
   { label: "Services & Pricing", to: "/services" },
+  { label: "Accessories", to: "/accessories" },
   { label: "Get an Instant Quote", to: "/quote" },
   { label: "Before / After Gallery", to: "/gallery" },
   { label: "About the Studio", to: "/about" },
@@ -23,7 +25,7 @@ export const footerServiceLinks = [
   { label: "Compound & Polish", to: "/services#compound" },
   { label: "Interior Deep Clean", to: "/services#interior" },
   { label: "Engine Bay Wash", to: "/services#engine" },
-  { label: "Auto Spa Wash", to: "/services#spa" },
   { label: "Overspray Removal", to: "/services#overspray" },
+  { label: "Exterior Detail", to: "/services#exterior" },
   { label: "PPF", to: "/services#ppf" },
 ];
