@@ -12,6 +12,12 @@ export default function Quote() {
       <section className="pb-24 md:pb-32">
         <div className="container-page">
           <QuoteBuilder />
+          <p className="text-center text-sm text-muted mt-10">
+            Also accessorizing your car?{" "}
+            <Link to="/accessories" className="text-amber hover:text-amber-light">
+              See our mats, tints, badges & more
+            </Link>
+          </p>
         </div>
       </section>
     </>

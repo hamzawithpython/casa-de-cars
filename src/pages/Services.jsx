@@ -69,6 +69,19 @@ export default function Services() {
         </div>
       </section>
 
+      <section className="pb-4">
+        <div className="container-page text-center">
+          <Reveal>
+            <p className="text-sm text-muted">
+              Looking for car accessories instead?{" "}
+              <Link to="/accessories" className="text-amber hover:text-amber-light">
+                Browse mats, tints, badges & more
+              </Link>
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
       <section className="py-20 md:py-28">
         <div className="container-page text-center max-w-xl mx-auto">
           <Reveal>

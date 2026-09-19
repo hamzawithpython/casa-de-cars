@@ -2,6 +2,7 @@ import Hero from "../components/home/Hero";
 import BrandMarquee from "../components/home/BrandMarquee";
 import StudioSection from "../components/home/StudioSection";
 import ServicesPreview from "../components/home/ServicesPreview";
+import AccessoriesTeaser from "../components/home/AccessoriesTeaser";
 import HowItWorks from "../components/home/HowItWorks";
 import TransformationSection from "../components/home/TransformationSection";
 import InstagramGrid from "../components/home/InstagramGrid";
@@ -14,6 +15,7 @@ export default function Home() {
       <BrandMarquee />
       <StudioSection />
       <ServicesPreview />
+      <AccessoriesTeaser />
       <HowItWorks />
       <TransformationSection />
       <InstagramGrid />

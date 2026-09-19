@@ -6,6 +6,7 @@ import useScrollToTop from "./hooks/useScrollToTop";
 
 import Home from "./pages/Home";
 import Services from "./pages/Services";
+import Accessories from "./pages/Accessories";
 import Quote from "./pages/Quote";
 import Gallery from "./pages/Gallery";
 import About from "./pages/About";
@@ -24,6 +25,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/accessories" element={<Accessories />} />
           <Route path="/quote" element={<Quote />} />
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/about" element={<About />} />
