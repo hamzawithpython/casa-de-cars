@@ -1,10 +1,11 @@
-import { images } from "./images";
+﻿import { images } from "./images";
 
 export const featuredReview = {
   image: images.driverInsideCarNight,
-  quote: "Loved the services, Recommended!",
-  author: "Honda Civic RS owner",
-  context: "Shared on Instagram after a complete detailing session",
+  quote:
+    "I recently had my car detailed by Casa De Cars, and I couldn't be happier with the results. The team was professional, attentive, and paid incredible attention to detail. My car looks and feels like it just came out of the showroom -- both the interior and exterior were spotless.",
+  author: "Mustaneer Habib",
+  context: "Google Review",
 };
 
 export const communityReviews = [
@@ -14,7 +15,7 @@ export const communityReviews = [
     name: "Taimooriii",
     role: "Content Creator",
     blurb:
-      "Trusted Casa De Cars with his car for a complete detailing session — featured on our Instagram.",
+      "Trusted Casa De Cars with his car for a complete detailing session -- featured on our Instagram.",
   },
   {
     image: images.redHondaCity,
@@ -22,7 +23,7 @@ export const communityReviews = [
     name: "@arslanhk",
     role: "Honda City owner",
     blurb:
-      "In for a complete detailing — deep clean, glossy finish, premium protection.",
+      "In for a complete detailing -- deep clean, glossy finish, premium protection.",
   },
   {
     image: images.miniCooperBlack,

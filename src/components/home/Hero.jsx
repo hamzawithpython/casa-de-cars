@@ -19,8 +19,9 @@ export default function Hero() {
       <div className="relative container-page pb-20 pt-40">
         <Reveal>
           <p className="flex items-center gap-3 text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-cream/70 mb-6">
+            <span className="w-8 h-px bg-amber shrink-0" />
             {business.category}
-            <span className="w-8 h-px bg-amber" />
+            <span className="w-8 h-px bg-amber shrink-0" />
           </p>
         </Reveal>
 

@@ -1,4 +1,4 @@
-import { MessageCircle } from "lucide-react";
+﻿import { MessageCircle, ExternalLink } from "lucide-react";
 import InstagramIcon from "../components/ui/InstagramIcon";
 import PageHero from "../components/layout/PageHero";
 import ReviewCard from "../components/reviews/ReviewCard";
@@ -13,7 +13,7 @@ export default function Reviews() {
       <PageHero
         eyebrow="Reviews"
         title="Word from the driver's seat"
-        description="We are a young studio, and our community on Instagram is where our customers speak first. Here is what they are saying."
+        description="We are a young studio, and our community on Instagram and Google is where our customers speak first. Here is what they are saying."
       />
 
       <section className="pb-20 md:pb-28">
@@ -27,11 +27,20 @@ export default function Reviews() {
               />
             </div>
             <div className="p-8 md:p-10 flex flex-col justify-center">
-              <p className="text-2xl md:text-3xl font-display uppercase leading-snug mb-6 text-balance">
-                “{featuredReview.quote}”
+              <p className="text-lg md:text-xl leading-relaxed text-cream/90 italic mb-6">
+                "{featuredReview.quote}"
               </p>
               <p className="text-cream/90 font-medium">{featuredReview.author}</p>
-              <p className="text-sm text-muted mt-1">{featuredReview.context}</p>
+              <p className="text-sm text-muted mt-1 mb-5">{featuredReview.context}</p>
+              <Button
+                href={business.mapsUrl}
+                variant="secondary"
+                size="sm"
+                icon={ExternalLink}
+                className="self-start"
+              >
+                Read on Google
+              </Button>
             </div>
           </Reveal>
         </div>
@@ -44,7 +53,7 @@ export default function Reviews() {
               Trusted by the community
             </h2>
             <p className="text-muted leading-relaxed">
-              From daily drivers to content creators — customers who brought
+              From daily drivers to content creators -- customers who brought
               their cars in and shared the results with their own followers.
             </p>
           </Reveal>
