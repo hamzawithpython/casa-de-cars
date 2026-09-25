@@ -57,18 +57,22 @@ export const processSteps = [
   },
 ];
 
+// Fixed: this used to have `before`/`after` fields, but the slider
+// component reads a single `image` field -- that mismatch is why the
+// homepage transformation photo wasn't rendering.
 export const heroTransformation = {
-  before: images.whiteCarGlossyHood,
-  after: images.whiteCarGlossyHood,
+  image: images.whiteCarGlossyHood,
   eyebrow: "Compound & Polish",
   title: "From Dull to Glossy",
   caption: "paint brought back to life",
 };
 
+// Real Google review, replacing the old placeholder Instagram quote.
 export const homeTestimonial = {
-  image: images.nightDriveDashboard,
-  quote: "Loved the services, Recommended!",
-  author: "Honda Civic RS owner \u2014 via Instagram",
+  quote:
+    "I went as a random customer, found Haider quite knowledgeable about car and its maintenance, he and his team did a phenomenal job, did extra ceramic coating turned out to be an excellent decision. The car outside inside and engine bay results speaks itself. I am happy to recommend Casa de cars for complete detailing solutions.",
+  author: "Muhammad Farrukh Adil",
+  source: "Google Review",
 };
 
 export const instagramFeed = [

@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
-import { Layers, Wind, ShieldCheck, Award, Package, ArrowRight } from "lucide-react";
+﻿import { Link } from "react-router-dom";
+import { Layers, Wind, ShieldCheck, Droplet, Award, Shield, Package, ArrowRight } from "lucide-react";
 import { accessoryCategories } from "../../data/accessories";
 import Reveal from "../ui/Reveal";
 import Button from "../ui/Button";
 
-const ICONS = { Layers, Wind, ShieldCheck, Award, Package };
+const ICONS = { Layers, Wind, ShieldCheck, Droplet, Award, Shield, Package };
 
 export default function AccessoriesTeaser() {
   return (
@@ -17,8 +17,8 @@ export default function AccessoriesTeaser() {
               Beyond detailing
             </h2>
             <p className="mt-4 text-muted max-w-md">
-              Mats, scent, tint, badges and more — everything to finish the
-              look, all in one place.
+              Mats, tints, scents, care products, personalization and more:
+              everything to finish the look, all in one place.
             </p>
           </div>
           <Button to="/accessories" icon={ArrowRight}>
@@ -26,7 +26,7 @@ export default function AccessoriesTeaser() {
           </Button>
         </Reveal>
 
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
           {accessoryCategories.map((category, i) => {
             const Icon = ICONS[category.icon] || Package;
             return (

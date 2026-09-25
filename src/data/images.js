@@ -1,18 +1,18 @@
-/**
- * All imagery is centralised here so it's trivial to swap later —
- * point these at your own CDN, an /assets folder, or a backend-served
- * media library without touching any component.
- *
- * These currently reference the original deployed site's public image
- * host as placeholders. Replace each value with your own asset path
- * (e.g. "/assets/cars/audi-a3.jpg") when you have final photography.
+﻿/**
+ * Local images, downloaded from the original deployed site and now served
+ * from this project's own public/images/ folder -- no external dependency.
  */
+const BASE = "/images";
 
-const BASE =
-  "https://wstvr-0e6hswvday7vkc9tskg6vzxf7w.draft.repaint.com/profile";
+// TEMPORARY: the logo file wasn't part of the downloaded batch, so this
+// still points at the old external host. Save the logo from the live site
+// as public/images/casa-de-cars-logo-d6a1e.jpg, then change this line to:
+//   logo: `${BASE}/casa-de-cars-logo-d6a1e.jpg`,
+const LOGO_URL =
+  "https://wstvr-0e6hswvday7vkc9tskg6vzxf7w.draft.repaint.com/profile/casa-de-cars-logo-d6a1e.jpg";
 
 export const images = {
-  logo: `${BASE}/casa-de-cars-logo-d6a1e.jpg`,
+  logo: LOGO_URL,
 
   audiA3: `${BASE}/audi-a3-showroom-detailing-a8338.jpg`,
   kiaSportageShowroom: `${BASE}/white-kia-sportage-showroom-2b2d8.jpg`,

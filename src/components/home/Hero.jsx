@@ -19,8 +19,8 @@ export default function Hero() {
       <div className="relative container-page pb-20 pt-40">
         <Reveal>
           <p className="flex items-center gap-3 text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-cream/70 mb-6">
-            <span className="w-8 h-px bg-amber" />
             {business.category}
+            <span className="w-8 h-px bg-amber" />
           </p>
         </Reveal>
 
@@ -34,7 +34,7 @@ export default function Hero() {
 
         <Reveal delay={0.16}>
           <p className="mt-6 max-w-xl text-base md:text-lg text-cream/85 leading-relaxed">
-            Premium car detailing with German products — from dull to
+            Premium car detailing with German products -- from dull to
             showroom shine. Transparent prices, real results, and a slot
             waiting for your car.
           </p>

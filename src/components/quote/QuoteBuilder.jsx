@@ -8,9 +8,6 @@ import Button from "../ui/Button";
 const DEFAULT_SIZE = "sedan";
 const DEFAULT_SERVICES = ["signature"];
 
-// PPF has no fixed price (it depends on film quality), so it can't join the
-// running total — it's excluded from selection but still shown below the
-// list as a non-selectable row that jumps straight to a WhatsApp quote.
 const quotableServices = services.filter((s) => !s.quoteOnly);
 const quoteOnlyServices = services.filter((s) => s.quoteOnly);
 
@@ -56,7 +53,6 @@ export default function QuoteBuilder() {
   return (
     <div className="grid lg:grid-cols-[1fr_380px] gap-12 items-start">
       <div className="space-y-16">
-        {/* Step 01 — Vehicle size */}
         <Reveal>
           <StepLabel number="01" title="Your vehicle size" />
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -81,7 +77,6 @@ export default function QuoteBuilder() {
           </div>
         </Reveal>
 
-        {/* Step 02 — Services */}
         <Reveal delay={0.05}>
           <StepLabel number="02" title="Choose your services" />
           <div className="space-y-3">
@@ -131,20 +126,23 @@ export default function QuoteBuilder() {
               );
             })}
 
-            {/* Quote-only services (e.g. PPF) — shown but not selectable,
-                since they have no fixed price to add to the running total. */}
             {quoteOnlyServices.map((s) => (
-              <a
+              <button
                 key={s.slug}
-                href={waLink(
-                  `Assalam-o-Alaikum! I'd like a quote for ${s.name} — could you share film options and pricing?`
-                )}
-                target="_blank"
-                rel="noopener noreferrer"
+                type="button"
+                onClick={() =>
+                  window.open(
+                    waLink(
+                      `Assalam-o-Alaikum! I'd like a quote for ${s.name} -- could you share film options and pricing?`
+                    ),
+                    "_blank",
+                    "noopener,noreferrer"
+                  )
+                }
                 className="w-full text-left rounded-xl border border-dashed border-line px-5 py-4 flex items-start gap-4 opacity-70 hover:opacity-100 hover:border-amber/50 transition-all duration-200"
               >
                 <span className="mt-0.5 shrink-0 w-5 h-5 rounded-md border border-cream/20 flex items-center justify-center text-muted text-[10px] font-bold">
-                  ×
+                  x
                 </span>
                 <span className="flex-1">
                   <span className="flex flex-wrap items-center gap-2">
@@ -163,13 +161,12 @@ export default function QuoteBuilder() {
                   Ask on WhatsApp
                   <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={2.5} />
                 </span>
-              </a>
+              </button>
             ))}
           </div>
         </Reveal>
       </div>
 
-      {/* Sticky summary */}
       <Reveal delay={0.1} className="lg:sticky lg:top-28">
         <div className="rounded-2xl border border-line bg-panel p-7">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-muted mb-2">
@@ -179,7 +176,7 @@ export default function QuoteBuilder() {
             {formatPKR(total)}
           </p>
           <p className="text-xs text-muted mb-6">
-            {sizeLabel} · final quote confirmed after a quick inspection at
+            {sizeLabel} {"\u00b7"} final quote confirmed after a quick inspection at
             the studio
           </p>
 

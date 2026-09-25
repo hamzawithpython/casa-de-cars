@@ -1,13 +1,13 @@
-import { Layers, Wind, ShieldCheck, Award, Package, ArrowRight } from "lucide-react";
+﻿import { Layers, Wind, ShieldCheck, Droplet, Award, Shield, Package, ArrowRight } from "lucide-react";
 
-const ICONS = { Layers, Wind, ShieldCheck, Award, Package };
+const ICONS = { Layers, Wind, ShieldCheck, Droplet, Award, Shield, Package };
 
 export default function CategoryCard({ category }) {
   const Icon = ICONS[category.icon] || Package;
 
   return (
-    
-      <a href={`#${category.slug}`}
+    <a
+    href={`#${category.slug}`}
       className="group block h-full rounded-xl border border-line bg-panel p-6 hover:border-amber/50 transition-colors duration-300"
     >
       <span className="w-12 h-12 rounded-full bg-amber/15 text-amber flex items-center justify-center mb-5">
